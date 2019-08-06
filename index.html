@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors Project</title>
+</head>
+<body>
+  <script>
+      function computerPlay() {
+        var roll = Math.random();
+        if (roll < 0.33) {
+          var result = "Rock";
+          console.log("Computer picks " + result);
+          return "Rock";
+        } else if (roll >= 0.33 && roll < 0.66) {
+          var result = "Paper";
+          console.log("Computer picks " + result);
+          return "Paper";
+        } else {
+          var result = "Scissors";
+          console.log("Computer picks " + result);
+          return "Scissors";
+        }
+      }
+      function playRound(playerSelection, computerSelection) {
+        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+        
+        if (playerSelection == "Rock") {
+          console.log("Rock, is your choice");
+          if (computerSelection == "Rock") {
+            return "tie";
+          } else if (computerSelection == "Paper") {
+            return "win";
+          } else {
+            return "lose";
+          }
+        } else if (playerSelection == "Paper") {
+          console.log("Paper, is your choice");
+          if (computerSelection == "Rock") {
+            return "win";
+          } else if (computerSelection == "Paper") {
+            return "tie";
+          } else {
+            return "lose";
+          }
+        } else if  (playerSelection == "Scissors") {
+          console.log("Scissors, is your choice");
+          if (computerSelection == "Rock") {
+            return "lose";
+          } else if (computerSelection == "Paper") {
+            return "win";
+          } else {
+            return "tie";
+          }
+        } else {
+            alert("ERROR");
+          }
+      }
+      function game() {
+        var winCount = 0;
+        var loseCount = 0;
+        var tieCount = 0;
+        function runRound() {
+          playerSelection = prompt("Please enter your choice");
+          result = playRound(playerSelection, computerPlay());
+          if (result == "win") {
+            winCount += 1;
+          } else if (result == "lose") {
+            loseCount += 1;
+          } else {
+            tieCount += 1;
+          }
+        }
+        
+        runRound();
+        runRound();
+        runRound();
+        runRound();
+        runRound();
+           
+        console.log("Win Count: " + winCount);
+        console.log("Lose Count: " + loseCount);
+        console.log("Tie Count: " + tieCount);
+        if (winCount > loseCount) {
+          console.log("You win!");
+        } else if (winCount < loseCount) {
+          console.log("You suck!");
+        } else {
+          console.log("Tie Game, try again!");
+        }
+      }
+      game();
+  </script>
+</body>
+</html>
